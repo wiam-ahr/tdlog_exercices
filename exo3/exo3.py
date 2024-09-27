@@ -4,12 +4,15 @@ mener à bien un projet.
 Elle génère un produit de haute qualité tout en prenant en compte
 l’évolution des besoins des clients.
 
+
 La méthode la plus connue est Scrum.
+
 
 Au début d'un projet un « backlog », ensemble de tache à réaliser
 est défini avec le client.
 Ce « backlog » évolue dans le temps en fonction du besoin de client.
 On peut y rajouter des taches comme on peut en enlever.
+
 
 Durant le projet, une réunion avec l'équipe technique et l'équipe
 opérationnelle est organisée à chaque
@@ -39,5 +42,20 @@ La chaîne OK si le backlog est vide. Sinon retourner la chaîne KO.
 
 
 def processLines(lines) -> str:
-    # Implementer votre réponse ici
-    return "OK"
+     # Récupérer le nombre de sprints et le nombre initial de tâches
+    N = int(lines[0])
+    backlog = int(lines[1])
+    
+    # Traiter chaque sprint
+    for i in range(2, N + 2):
+        V, U = map(int, lines[i].split())
+        backlog -= V  # Retirer les tâches validées
+        backlog += U  # Ajouter ou supprimer des tâches du backlog
+    
+    # Vérifier si le backlog est vide à la fin des sprints
+    if backlog == 0:
+        return "OK"
+    else:
+        return "KO"
+     
+ 
